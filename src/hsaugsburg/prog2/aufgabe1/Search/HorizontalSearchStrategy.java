@@ -39,9 +39,8 @@ public class HorizontalSearchStrategy implements ISearchStrategy {
             throw new IllegalArgumentException("char array is null");
         if (world == null)
             throw new IllegalArgumentException(Coordinates.class.getName() + " is null");
-        int newX = 0;
         return (world.getSymbol(new Coordinates(coord.getxPos() + 1, coord.getyPos())) == symbol) ||
-                (world.getSymbol(new Coordinates(newX, coord.getyPos())) == symbol);
+                (world.getSymbol(new Coordinates(coord, coord.getyPos())) == symbol);
     }
 
     /**
