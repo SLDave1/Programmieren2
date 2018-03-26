@@ -68,6 +68,7 @@ public class DiagonalSearchStrategy implements ISearchStrategy {
         return count;
     }
 
+    //TODO refactor to Direction class
     private int upDiagonal(GameWorld world, Coordinates coord, char symbol) {
         int count = 0;
         int i = 0;
@@ -89,6 +90,7 @@ public class DiagonalSearchStrategy implements ISearchStrategy {
         return count;
     }
 
+    //TODO refactor to Direction class
     private int downDiagonal(GameWorld world, Coordinates coord, char symbol) {
         int count = 0;
         int i = 0;

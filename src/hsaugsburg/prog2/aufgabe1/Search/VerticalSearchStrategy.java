@@ -55,34 +55,8 @@ public class VerticalSearchStrategy implements ISearchStrategy {
         if (coord == null)
             throw new IllegalArgumentException(Coordinates.class.getName() + " is null");
         int count = 1;
-        count += countUp(world, coord, symbol);
-        count += countDown(world, coord, symbol);
-        return count;
-    }
-
-    private int countUp(GameWorld world, Coordinates coord, char symbol) {
-        int count = 0;
-        int i = 0;
-        char c = symbol;
-        while (c == symbol) {
-            i++;
-            c = world.getSymbol(new Coordinates(coord.getxPos(), coord.getyPos() + i));
-            if (c == symbol)
-                count++;
-        }
-        return count;
-    }
-
-    private int countDown(GameWorld world, Coordinates coord, char symbol) {
-        int count = 0;
-        int i = 0;
-        char c = symbol;
-        while (c == symbol) {
-            i++;
-            c = world.getSymbol(new Coordinates(coord.getxPos(), coord.getyPos() - i));
-            if (c == symbol)
-                count++;
-        }
+        count += new Direction(DirectionSetting.Up).scan(world, coord, symbol);
+        count += new Direction(DirectionSetting.Down).scan(world, coord, symbol);
         return count;
     }
 }

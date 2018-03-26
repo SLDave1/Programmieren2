@@ -55,10 +55,6 @@ public class Direction {
                 c = world.getSymbol(new Coordinates(coord.getxPos(), coord.getyPos() + i));
             else if (_setting.equals(DirectionSetting.Down))
                 c = world.getSymbol(new Coordinates(coord.getxPos(), coord.getyPos() - i));
-            else if (_setting.equals(DirectionSetting.DiagonalUp))
-                c = world.getSymbol(new Coordinates(coord.getxPos() - i, coord.getyPos()));
-            else if (_setting.equals(DirectionSetting.DiagonalDown))
-                c = world.getSymbol(new Coordinates(coord.getxPos() - i, coord.getyPos()));
             if (c == symbol)
                 count++;
         }

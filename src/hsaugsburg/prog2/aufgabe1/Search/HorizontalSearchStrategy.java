@@ -40,7 +40,7 @@ public class HorizontalSearchStrategy implements ISearchStrategy {
         if (world == null)
             throw new IllegalArgumentException(Coordinates.class.getName() + " is null");
         return (world.getSymbol(new Coordinates(coord.getxPos() + 1, coord.getyPos())) == symbol) ||
-                (world.getSymbol(new Coordinates(coord, coord.getyPos())) == symbol);
+                (world.getSymbol(new Coordinates(coord.getxPos() - 1, coord.getyPos())) == symbol);
     }
 
     /**
@@ -56,34 +56,8 @@ public class HorizontalSearchStrategy implements ISearchStrategy {
         if (coord == null)
             throw new IllegalArgumentException(Coordinates.class.getName() + " is null");
         int count = 1;
-        count += countRight(world, coord, symbol);
-        count += countLeft(world, coord, symbol);
-        return count;
-    }
-
-    private int countRight(GameWorld world, Coordinates coord, char symbol) {
-        int count = 0;
-        int i = 0;
-        char c = symbol;
-        while (c == symbol) {
-            i++;
-            c = world.getSymbol(new Coordinates(coord.getxPos() + i, coord.getyPos()));
-            if (c == symbol)
-                count++;
-        }
-        return count;
-    }
-
-    private int countLeft(GameWorld world, Coordinates coord, char symbol) {
-        int count = 0;
-        int i = 0;
-        char c = symbol;
-        while (c == symbol) {
-            i++;
-            c = world.getSymbol(new Coordinates(coord.getxPos() - i, coord.getyPos()));
-            if (c == symbol)
-                count++;
-        }
+        count += new Direction(DirectionSetting.Right).scan(world, coord, symbol);
+        count += new Direction(DirectionSetting.Left).scan(world, coord, symbol);;
         return count;
     }
 }
