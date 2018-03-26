@@ -1,3 +1,19 @@
+/*
+ * Copyright 2017-2021 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package hsaugsburg.prog2.aufgabe1.Game;
 
 /**
@@ -53,7 +69,7 @@ public class GameWorld2D implements GameWorld {
      */
     public void setX(Coordinates coord) {
         if (coord == null)
-            throw new IllegalArgumentException(Coordinates.class.getName() + "is null");
+            throw new IllegalArgumentException(Coordinates.class.getName() + " is null");
         Validate(coord.getxPos(), coord.getyPos());
         _world[coord.getxPos()][coord.getyPos()] = 'X';
     }
@@ -64,9 +80,25 @@ public class GameWorld2D implements GameWorld {
      */
     public void setO(Coordinates coord) {
         if (coord == null)
-            throw new IllegalArgumentException(Coordinates.class.getName() + "is null");
+            throw new IllegalArgumentException(Coordinates.class.getName() + " is null");
         Validate(coord.getxPos(), coord.getyPos());
         _world[coord.getxPos()][coord.getyPos()] = 'O';
+    }
+
+    /**
+     * Will return symbol for coordinates
+     * @param coord
+     * @return char symbol
+     */
+    @Override
+    public char getSymbol(Coordinates coord) {
+        if (coord.getyPos() <= 0 || coord.getyPos() > _world.length - 2)
+            return '|';
+        try {
+            return _world[coord.getyPos()][coord.getxPos()];
+        } catch (Exception ex) {
+            return '|';
+        }
     }
 
     private void Validate(int xPos, int yPos) {
